@@ -196,33 +196,4 @@ window.addEventListener("touchend",e=>{
 // ===== MOVEMENT =====
 let yaw=0,pitch=0,move=0;
 
-window.addEventListener("touchmove",e=>{
-  const t=e.changedTouches[0];
-  yaw-=t.movementX*0.002||0;
-  pitch-=t.movementY*0.002||0;
-  pitch=Math.max(-1.5,Math.min(1.5,pitch));
-  move=-0.12;
-});
 
-window.addEventListener("touchend",()=>move=0);
-
-// ===== LOOP =====
-function animate(){
-  requestAnimationFrame(animate);
-  camera.rotation.order="YXZ";
-  camera.rotation.y=yaw;
-  camera.rotation.x=pitch;
-  camera.translateZ(move);
-  updateChunks();
-  renderer.render(scene,camera);
-}
-animate();
-
-window.addEventListener("resize",()=>{
-  camera.aspect=innerWidth/innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(innerWidth,innerHeight);
-});
-</script>
-</body>
-</html
